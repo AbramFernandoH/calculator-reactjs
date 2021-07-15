@@ -1,0 +1,10 @@
+.Screen{
+  background-color: white;
+  height: 50px;
+}
+
+.Screen h1{
+  margin: 8px 15px 8px;
+  text-align: right;
+}
+

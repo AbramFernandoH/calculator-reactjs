@@ -1,0 +1,25 @@
+.Calculator{
+  display: grid;
+  background-color: teal;
+  height: 400px;
+  grid-template: repeat(5, auto) / repeat(4, auto);
+}
+
+.clear{
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+}
+
+.operators{
+  grid-column: 4 / 5;
+  grid-row: 1 / -1;
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+}
+
+.calcNumbers{
+  grid-column: 1 / 4;
+  grid-row: 2 / 5;
+  display: grid;
+  grid-template: repeat(3, auto) / repeat(3, auto);
+}
