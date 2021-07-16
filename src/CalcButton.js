@@ -8,7 +8,7 @@ class CalcButton extends Component{
   }
   render(){
     return(
-      <button className={`CalcButton ${this.props.calcBtnClass}`}>{this.props.calcvalue}</button>
+      <button onClick={this.props.btnClick} className={`CalcButton ${this.props.calcBtnClass}`}>{this.props.calcvalue}</button>
     )
   }
 }

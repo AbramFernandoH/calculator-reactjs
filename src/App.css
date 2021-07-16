@@ -1,7 +1,8 @@
 body{
   background-image: linear-gradient(to right bottom, orange, purple);
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 3000px;
 }
 
 .App{
