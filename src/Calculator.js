@@ -52,7 +52,8 @@ class Calculator extends Component{
           });
           break;
       }
-    } else if(operator === 'equals' && this.state.calcScreen !== '') {
+    } 
+    else if(operator === 'equals' && this.state.calcScreen !== '') {
       const calcScreen = [...this.state.calcScreen];
       const operand = calcScreen.splice(calcScreen.findIndex(op => op === ' ') + 1, 1);
       const firstDigitNum2 = calcScreen.findIndex(space => space === ' ') + 2;
@@ -87,9 +88,26 @@ class Calculator extends Component{
   }
 
   addNumber(num){
-    this.setState(curState => {
-      return { calcScreen: `${curState.calcScreen}${num}` }
-    });
+    const operatorSigns = /(\/|-|\+|\*)/g;
+    const isNumbers = /[0-9]/g;
+    // const dotInNum2 = /(\/|-|\+|\*)\s{1}-?\d+/g;
+    // const cannotAddDot = /(\/|-|\+|\*)\s{1}-?\d+\.{1}\d*(?=\.+)/g;
+    // const notAfterOperandSign = /(-|\*|\+\/)\s{1}(?=\.+)/g;
+    if(this.state.calcScreen !== "" && num === "."){
+      const spreadCalcScreen = [...this.state.calcScreen];
+      const findSpace = spreadCalcScreen.findIndex(element => element === " ");
+      const num2 = spreadCalcScreen.slice(findSpace + 3, spreadCalcScreen.length);
+
+      if(operatorSigns.test(spreadCalcScreen) === true && isNumbers.test(spreadCalcScreen[findSpace + 3]) === true && num2.includes('.') === false){
+        return this.setState(curState => ({ calcScreen: `${curState.calcScreen}.` }));
+      }
+      else if(operatorSigns.test(spreadCalcScreen) === false && spreadCalcScreen.includes('.') === false){
+        return this.setState(curState => ({ calcScreen: `${curState.calcScreen}.` }));
+      }
+    } 
+    if(num !== ".") {
+      this.setState(curState => ({ calcScreen: `${curState.calcScreen}${num}` }));
+    }
   }
 
   render(){
