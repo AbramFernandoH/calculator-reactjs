@@ -15,13 +15,20 @@ class Calculator extends Component{
       calcScreen: '0'
     }
     this.clearScreen = this.clearScreen.bind(this);
+    this.delScreen = this.delScreen.bind(this);
     this.addOperators = this.addOperators.bind(this);
   }
 
   clearScreen(){
-    this.setState(curState => {
-      return { calcScreen: '' }
-    });
+    this.setState(curState => ({ calcScreen: '' }));
+  }
+
+  delScreen(){
+    const calcScreen = [...this.state.calcScreen];
+    if(calcScreen.pop() !== " "){
+      return this.setState(curState => ({ calcScreen: curState.calcScreen.slice(0, -1) }));
+    }
+    this.setState(curState => ({ calcScreen: curState.calcScreen.slice(0, -3) }));
   }
 
   addOperators(operator){
@@ -83,6 +90,9 @@ class Calculator extends Component{
             return { calcScreen: num1 - num2 }
           });
           break;
+
+        default:
+          break;
       }
     }
   }
@@ -97,7 +107,6 @@ class Calculator extends Component{
       const spreadCalcScreen = [...this.state.calcScreen];
       const findSpace = spreadCalcScreen.findIndex(element => element === " ");
       const num2 = spreadCalcScreen.slice(findSpace + 3, spreadCalcScreen.length);
-
       if(operatorSigns.test(spreadCalcScreen) === true && isNumbers.test(spreadCalcScreen[findSpace + 3]) === true && num2.includes('.') === false){
         return this.setState(curState => ({ calcScreen: `${curState.calcScreen}.` }));
       }
@@ -117,8 +126,13 @@ class Calculator extends Component{
         <Screen show={this.state.calcScreen} />
         <CalcButton 
           calcBtnClass='clear' 
-          calcvalue='CLEAR' 
+          calcvalue='CA' 
           btnClick={this.clearScreen} 
+        />
+        <CalcButton 
+          calcBtnClass='delete' 
+          calcvalue='DEL' 
+          btnClick={this.delScreen} 
         />
         <div className="operators">
           {this.props.calcOperator.map(operator =>
@@ -132,7 +146,7 @@ class Calculator extends Component{
         <div className="calcNumbers">
           {this.props.calcNumber.map(calcNum =>
             <CalcButton 
-              calcBtnClass={calcNum} 
+              calcBtnClass={calcNum === '.' ? 'dot' : calcNum} 
               calcvalue={calcNum} 
               btnClick={() => this.addNumber(calcNum)}
             />

@@ -2,11 +2,21 @@
   display: grid;
   height: 450px;
   grid-template: repeat(6, auto) / repeat(4, auto);
+  font-family: 'STIX Two Math', serif;
 }
 
-.clear{
-  grid-column: 1 / 4;
+.CalcButton-clear{
+  grid-column: 1 / 3;
   grid-row: 2 / 3;
+  font-family: 'STIX Two Math', serif;
+  font-size: 1.4rem;
+}
+
+.CalcButton-delete{
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  font-family: 'STIX Two Math', serif;
+  font-size: 1.4rem;
 }
 
 .operators{
@@ -16,9 +26,23 @@
   grid-template-rows: repeat(5, auto);
 }
 
+.operators button{
+  font-size: 1.3rem;
+}
+
 .calcNumbers{
   grid-column: 1 / 4;
   grid-row: 3 / -1;
   display: grid;
   grid-template: repeat(4, auto) / repeat(3, auto);
+  grid-template-areas: 
+  'nine eight seven'
+  'six five four'
+  'three two one'
+  'dbzero zero dot';
+}
+
+.calcNumbers button{
+  font-family: 'STIX Two Math', serif;
+  font-size: 1.3rem;
 }
