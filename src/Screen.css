@@ -1,7 +1,9 @@
 .Screen{
-  background-color: white;
+  background-color: rgb(71, 209, 131);
   grid-column: 1 / -1;
   grid-row: 1 / 2;
+  border-radius: 5% 5% 0 0;
+  margin-bottom: 1rem;
 }
 
 .Screen h1{

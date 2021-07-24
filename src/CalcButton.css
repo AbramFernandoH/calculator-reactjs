@@ -1,3 +1,10 @@
+button[class^="CalcButton-"]{
+  background-color: rgb(44, 98, 143);
+  color: white;
+  font-weight: 800;
+  border-radius: 10%;
+}
+
 .CalcButton-9{
   grid-area: nine;
 }
